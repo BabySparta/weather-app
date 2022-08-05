@@ -1,0 +1,87 @@
+/* CSS reset and general */
+
+:root {
+    --mainColor: rgb(16, 20, 44)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Main content */
+
+/* Header */
+
+.header {
+    width: auto;
+    height: 10vh;
+    background-color: var(--mainColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.titleTxt {
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.titleIcon {
+    width: 72px;
+    height: 72px;
+}
+
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    gap: 4px;
+}
+
+.search {
+    outline: none;
+    border: none;
+    background-color: var(--mainColor);
+    font-size: 1.5rem;
+    color: white;
+    border-bottom: 2px solid white;
+    padding: 4px;
+}
+
+.searchBtn {
+    outline: none;
+    border: none;
+    background-color: var(--mainColor);
+    width: 2rem;
+    height: 2rem;
+    transition: 0.3s ease-in-out;
+}
+
+.searchBtn:hover {
+    transform: rotate(15deg);
+    cursor: pointer;
+}
+
+.searchIcon {
+    width: 2rem;
+    height: 2rem;
+}
