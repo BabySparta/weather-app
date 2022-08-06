@@ -85,3 +85,11 @@ form {
     width: 2rem;
     height: 2rem;
 }
+
+.current {
+    background-image: url(resources/clear.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 60vh;
+}
