@@ -7,8 +7,10 @@ function displayData(obj, name) {
     const humidity = document.querySelector('.humidity');
     const windSpd = document.querySelector('.windSpeed');
     const weatherNow = document.querySelector('.weather');
-    const date = document.querySelector('.date')
+    const date = document.querySelector('.date');
     const time = document.querySelector('.time');
+    const precip = document.querySelector('.pop');
+    const desc = document.querySelector('.weatherDesc')
 
     const current = obj.current;
     const currWeather = current.weather[0];
@@ -20,12 +22,14 @@ function displayData(obj, name) {
 
     city.textContent = name;
     temp.textContent = formTemp + "\u00B0F";
-    feelsLike.textContent = "Feels Like: " + formFeels + "\u00B0F";
-    humidity.textContent = "Humidity: " + current.humidity + "%";
-    windSpd.textContent = "Wind Speed: " + current.wind_speed + " m/h";
+    feelsLike.textContent = formFeels + "\u00B0F";
+    humidity.textContent = current.humidity + "%";
+    windSpd.textContent = current.wind_speed + " m/h";
     weatherNow.textContent = currWeather.main;
+    desc.textContent = currWeather.description;
     date.textContent = formatDate(currentTime);
-    time.textContent = currentTime;
+    time.textContent = formatTime(currentTime);
+    precip.textContent = obj.daily[0].pop + '%'
 }
 
 function displayBackground(weather) {
@@ -86,10 +90,13 @@ function formatTime(fullTime) {
     const remSeconds = timeArray[4].split(':');
     const newTime = remSeconds[0] + ':' + remSeconds[1];
     if (remSeconds[0] < 13) {
+        if (remSeconds[0] === '00') {
+            return '12:' + remSeconds[1] + " AM";
+        }
         return newTime + ' AM';
     }
     const formatHours = remSeconds[0] - 12;
-    return 
+    return formatHours + ':' + remSeconds[1] + " PM";
 }
 
 export {    
