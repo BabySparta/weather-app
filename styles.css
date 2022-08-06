@@ -95,35 +95,79 @@ form {
     width: 100vw;
     height: 60vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .currCont {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: left;
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
+}
+
+.currMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 4px;
+}
+
+.currMore {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:flex-end;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 12px;
+}
+
+.currIcon {
+    width: 4rem;
+    height: 4rem;
+}
+
+.descWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .curr {
-    width: fit-content;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.currTxt {
+    color: white;
+    font-size: 1rem;
     font-weight: 700;
 }
 
 .city.curr {
     font-size: 3.5rem;
-    text-decoration: underline 4px solid white;
-    text-underline-offset: 6px;
 }
 
 .temp.curr {
     font-size: 7rem;
     letter-spacing: 6px;
+}
+
+.date.curr, .time.curr {
+    font-size: 1.6rem;
 }
 
 /* Future Weather */
