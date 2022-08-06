@@ -86,10 +86,85 @@ form {
     height: 2rem;
 }
 
+
+/* Current Weather */
 .current {
     background-image: url(resources/clear.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw;
     height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.currCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    width: 80%;
+    height: 80%;
+}
+
+.curr {
+    width: fit-content;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.city.curr {
+    font-size: 3.5rem;
+    text-decoration: underline 4px solid white;
+    text-underline-offset: 6px;
+}
+
+.temp.curr {
+    font-size: 7rem;
+    letter-spacing: 6px;
+}
+
+/* Future Weather */
+.future {
+    max-width: 100vw;
+    max-height: 20vh;
+    height: 20vh;
+    background-color: var(--mainColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 2rem;
+}
+
+/* Tabs */
+.tabs {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    margin-left: 3rem;
+}
+
+.tab {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.active {
+    text-decoration: underline 2px solid white;
+    text-underline-offset: 2px;
+}
+
+/* Future Weather */
+
+.futureContainer {
+    width: 100%;
+    height: 85%;
 }

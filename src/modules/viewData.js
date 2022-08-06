@@ -7,20 +7,25 @@ function displayData(obj, name) {
     const humidity = document.querySelector('.humidity');
     const windSpd = document.querySelector('.windSpeed');
     const weatherNow = document.querySelector('.weather');
+    const date = document.querySelector('.date')
     const time = document.querySelector('.time');
 
     const current = obj.current;
     const currWeather = current.weather[0];
     console.log(obj);
     displayBackground(currWeather);
-    getTime(current.dt, obj.timezone_offset);
+    const currentTime = getTime(current.dt, obj.timezone_offset);
+    const formTemp = String(current.temp).split('.')[0];
+    const formFeels = String(current.feels_like).split('.')[0];
 
     city.textContent = name;
-    temp.textContent = current.temp;
-    feelsLike.textContent = current.feels_like;
-    humidity.textContent = current.humidity;
-    windSpd.textContent = current.wind_speed;
-    weatherNow.textContent = currWeather.description;
+    temp.textContent = formTemp + "\u00B0F";
+    feelsLike.textContent = "Feels Like: " + formFeels + "\u00B0F";
+    humidity.textContent = "Humidity: " + current.humidity + "%";
+    windSpd.textContent = "Wind Speed: " + current.wind_speed + " m/h";
+    weatherNow.textContent = currWeather.main;
+    date.textContent = formatDate(currentTime);
+    time.textContent = currentTime;
 }
 
 function displayBackground(weather) {
@@ -49,10 +54,44 @@ function displayBackground(weather) {
 
 
 function getTime(unix, offset) {
-    const currTime = fromUnixTime(unix + offset);
-    console.log(currTime);
+    const currTime = fromUnixTime(unix + offset).toUTCString();
+    return currTime;
 }
 
-export {
+function formatDate(fullTime) {
+    const timeArray = fullTime.split(' ');
+
+    let formDay = timeArray[1];
+
+    if (formDay < 10) {
+        formDay = formDay.charAt(1);
+    }
+    if (formDay.charAt(-1) === 1) {
+        formDay = formDay + 'st';
+    }
+    if (formDay.charAt(-1) === 2) {
+        formDay = formDay + 'nd';
+    }
+    if (formDay.charAt(-1) === 3) {
+        formDay = formDay + 'rd';
+    } else {
+        formDay = formDay + 'th';
+    }
+
+    return timeArray[0] + ' ' + timeArray[2] + ' ' + formDay + ' ' + timeArray[3];
+}
+
+function formatTime(fullTime) {
+    const timeArray = fullTime.split(' ');
+    const remSeconds = timeArray[4].split(':');
+    const newTime = remSeconds[0] + ':' + remSeconds[1];
+    if (remSeconds[0] < 13) {
+        return newTime + ' AM';
+    }
+    const formatHours = remSeconds[0] - 12;
+    return 
+}
+
+export {    
     displayData,
 }
