@@ -10,7 +10,10 @@ function displayData(obj, name) {
     const date = document.querySelector('.date');
     const time = document.querySelector('.time');
     const precip = document.querySelector('.pop');
-    const desc = document.querySelector('.weatherDesc')
+    const desc = document.querySelector('.weatherDesc');
+    const sunrise = document.querySelector('.sunrise');
+    const sunset = document.querySelector('.sunset');
+    const comp = document.querySelector('.comp');
 
     const current = obj.current;
     const currWeather = current.weather[0];
@@ -26,10 +29,13 @@ function displayData(obj, name) {
     humidity.textContent = current.humidity + "%";
     windSpd.textContent = current.wind_speed + " m/h";
     weatherNow.textContent = currWeather.main;
-    desc.textContent = currWeather.description;
+    desc.textContent = "The weather is: " + currWeather.description;
     date.textContent = formatDate(currentTime);
     time.textContent = formatTime(currentTime);
-    precip.textContent = obj.daily[0].pop + '%'
+    precip.textContent = obj.daily[0].pop + '%';
+    sunrise.textContent = formatTime(getTime(current.sunrise, obj.timezone_offset));
+    sunset.textContent = formatTime(getTime(current.sunset, obj.timezone_offset));
+    comp.textContent = 'Temperature tommorrow will be ' + compareTommorrow(obj);
 }
 
 function displayBackground(weather) {
@@ -93,10 +99,27 @@ function formatTime(fullTime) {
         if (remSeconds[0] === '00') {
             return '12:' + remSeconds[1] + " AM";
         }
+        if (remSeconds[0] < 10) {
+            const remZero = remSeconds[0].charAt(1);
+            return remZero + ':' + remSeconds[1] + " AM";
+        }
         return newTime + ' AM';
     }
     const formatHours = remSeconds[0] - 12;
     return formatHours + ':' + remSeconds[1] + " PM";
+}
+
+function compareTommorrow(obj) {
+    const today = obj.daily[0].temp.day;
+    const tommorrow = obj.daily[1].temp.day;
+
+    if (Math.abs(today - tommorrow) <= 5) {
+        return 'similar to today';
+    }
+    if (today > tommorrow) {
+        return 'colder than today';
+    }
+    return 'warmer than today';
 }
 
 export {    
