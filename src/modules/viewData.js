@@ -190,13 +190,49 @@ function addHourlyData(index, obj, cell) {
     children.item(3).textContent = formedPop + '%';
 }
 
-
-
-
 // Daily Weather
 
+function displayDaily(obj) {
+    const futureContainer = document.querySelector('.futureContainer');
+    futureContainer.textContent = '';
+    makeContainers(7, futureContainer);
+    const cells = Array.from(document.querySelectorAll('.cell'));
+    cells.forEach((cell) => {
+        const index = cells.indexOf(cell);
+        addDailyData(index, obj, cell)
+    })
+}
+
+function addDailyData(index, obj, cell) {
+    const children = cell.children
+
+    // add day
+    const futureTime = obj.daily[index].dt;
+    const formedTime = getTime(futureTime, obj.timezone_offset);
+    const day = formedTime.split(',')[0];
+    children.item(0).textContent = day + 'day';
+
+    // add icon
+    const getIcon = obj.daily[index].weather[0].icon;
+    const iconSrc = `http://openweathermap.org/img/wn/${getIcon}@2x.png`
+    children.item(1).alt = getIcon;
+    children.item(1).src = iconSrc;
+
+    // add temp
+    const getHigh = obj.daily[index].temp.max;
+    const getLow = obj.daily[index].temp.min;
+    const formedHigh = String(getHigh).split('.')[0];
+    const formedLow = String(getLow).split('.')[0];
+    children.item(2).textContent = formedLow + ' | ' + formedHigh;
+
+    // add pop
+    const getPop = obj.daily[index].pop;
+    const formedPop = Math.round(getPop);
+    children.item(3).textContent = formedPop + '%';
+}
 
 export {    
     displayCurrent,
     displayHourly,
+    displayDaily,
 }
