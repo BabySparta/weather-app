@@ -1,6 +1,8 @@
 import {fromUnixTime} from "date-fns";
 
-function displayData(obj, name) {
+
+// Current Weather
+function displayCurrent(obj, name) {
     const city = document.querySelector('.city');
     const temp = document.querySelector('.temp');
     const feelsLike = document.querySelector('.feelsLike');
@@ -14,6 +16,9 @@ function displayData(obj, name) {
     const sunrise = document.querySelector('.sunrise');
     const sunset = document.querySelector('.sunset');
     const comp = document.querySelector('.comp');
+    const high = document.querySelector('.high');
+    const low = document.querySelector('.low');
+
 
     const current = obj.current;
     const currWeather = current.weather[0];
@@ -36,6 +41,8 @@ function displayData(obj, name) {
     sunrise.textContent = formatTime(getTime(current.sunrise, obj.timezone_offset));
     sunset.textContent = formatTime(getTime(current.sunset, obj.timezone_offset));
     comp.textContent = 'Temperature tommorrow will be ' + compareTommorrow(obj);
+    high.textContent = String(obj.daily[0].temp.max).split('.')[0];
+    low.textContent = String(obj.daily[0].temp.min).split('.')[0];
 }
 
 function displayBackground(weather) {
@@ -122,6 +129,74 @@ function compareTommorrow(obj) {
     return 'warmer than today';
 }
 
+
+// Hourly Weather
+
+function displayHourly(obj) {
+    const futureContainer = document.querySelector('.futureContainer');
+    futureContainer.textContent = '';
+    makeContainers(24, futureContainer);
+    const cells = Array.from(document.querySelectorAll('.cell'));
+    cells.forEach((cell) => {
+        const index = cells.indexOf(cell);
+        addHourlyData(index, obj, cell)
+    })
+}
+
+function makeContainers(amount, cont) {
+    for(let i = 0; i < amount; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+
+        const time = document.createElement('div');
+        time.classList.add('cellTxt');
+        const icon = document.createElement('img');
+        icon.classList.add('weatherIcon');
+        const temp = document.createElement('div');
+        temp.classList.add('cellTxt');
+        const chanceRain = document.createElement('div');
+        chanceRain.classList.add('cellTxt');
+
+        cell.appendChild(time);
+        cell.appendChild(icon);
+        cell.appendChild(temp);
+        cell.appendChild(chanceRain);
+        cont.appendChild(cell);
+    }
+}
+
+function addHourlyData(index, obj, cell) {
+    const children = cell.children
+
+    // add time
+    const futureTime = obj.hourly[index].dt;
+    const formedTime = formatTime(getTime(futureTime, obj.timezone_offset));
+    children.item(0).textContent = formedTime;
+
+    // add icon
+    const getIcon = obj.hourly[index].weather[0].icon;
+    const iconSrc = `http://openweathermap.org/img/wn/${getIcon}@2x.png`
+    children.item(1).alt = getIcon;
+    children.item(1).src = iconSrc;
+
+    // add temp
+    const getTemp = obj.hourly[index].temp;
+    const formedTemp = String(getTemp).split('.')[0];
+    children.item(2).textContent = formedTemp + '\u00B0F';
+
+    // add pop
+    const getPop = obj.hourly[index].pop;
+    const formedPop = Math.round(getPop);
+    children.item(3).textContent = formedPop + '%';
+}
+
+
+
+
+// Daily Weather
+
+
 export {    
-    displayData,
+    displayCurrent,
+    displayHourly,
 }
