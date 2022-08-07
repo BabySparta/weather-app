@@ -19,7 +19,6 @@ function displayCurrent(obj, name) {
     const high = document.querySelector('.high');
     const low = document.querySelector('.low');
 
-
     const current = obj.current;
     const currWeather = current.weather[0];
     console.log(obj);
@@ -68,7 +67,6 @@ function displayBackground(weather) {
         container.style.backgroundImage = "url(./resources/cloudy.jpg)"
     }
 }
-
 
 function getTime(unix, offset) {
     const currTime = fromUnixTime(unix + offset).toUTCString();
@@ -210,7 +208,7 @@ function addDailyData(index, obj, cell) {
     const futureTime = obj.daily[index].dt;
     const formedTime = getTime(futureTime, obj.timezone_offset);
     const day = formedTime.split(',')[0];
-    children.item(0).textContent = day + 'day';
+    children.item(0).textContent = getFullDay(day);
 
     // add icon
     const getIcon = obj.daily[index].weather[0].icon;
@@ -229,6 +227,14 @@ function addDailyData(index, obj, cell) {
     const getPop = obj.daily[index].pop;
     const formedPop = Math.round(getPop);
     children.item(3).textContent = formedPop + '%';
+}
+
+function getFullDay(day) {
+    if (day === 'Sun' || day === 'Mon' || day === 'Fri') {return day + 'day'}
+    if (day === 'Tue') {return day + 'sday'};
+    if (day === 'Wed') {return day + 'nesday'};
+    if (day === 'Thu') {return day + 'rsday'};
+    if (day === 'Sat') {return day + 'urday'};
 }
 
 export {    
