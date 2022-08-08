@@ -1,6 +1,6 @@
 async function getCoords(location) {
   const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=07d6d743abf155d07011e87ead210d57`,
+    `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=07d6d743abf155d07011e87ead210d57`,
     { mode: "cors" }
   );
   const data = await response.json();
