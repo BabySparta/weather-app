@@ -1,106 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="loadWrap">
+      <div class="loader"></div>
+    </div>
     <div class="header">
-        <div class="toggle-button-cover">
-            <div class="button-cover">
-              <div class="button b2" id="button-13">
-                <input type="checkbox" class="checkbox" />
-                <div class="knobs">
-                  <span></span>
-                </div>
-                <div class="layer"></div>
-              </div>
+      <div class="toggle-button-cover">
+        <div class="button-cover">
+          <div class="button b2" id="button-13">
+            <input type="checkbox" class="checkbox" />
+            <div class="knobs">
+              <span></span>
             </div>
+            <div class="layer"></div>
+          </div>
         </div>
-        <div class="title">
-            <img src="resources/title-icon.png" alt="logo" class="titleIcon">
-            <div class="titleTxt">Weather App</div>
+      </div>
+      <div class="title">
+        <img src="resources/title-icon.png" alt="logo" class="titleIcon" />
+        <div class="titleTxt">Weather App</div>
+      </div>
+      <form>
+        <div class="formWrap">
+          <input
+            type="text"
+            placeholder="Find City..."
+            name="search"
+            class="search"
+            required
+          />
+          <button type="submit" class="searchBtn">
+            <img src="resources/magnify.png" class="searchIcon" alt="search" />
+          </button>
         </div>
-        <form>
-            <input type="text" placeholder="Find City..." name="search" class="search">
-            <button type="submit" class="searchBtn"><img src="resources/magnify.png" class="searchIcon" alt="search"></button>
-        </form>
+        <div class="error-message">
+          Location not found. Format is: "City", "City,State", or "City,Country"
+        </div>
+      </form>
     </div>
     <div class="current">
-        <div class="currCont">  
-            <div class="currMain"> 
-                <div class="curr city"></div>
-                <div class="curr temp"></div>
-                <div class="hiLo">
-                    <div class="low"></div>
-                    <div class="high"></div>
-                </div>
-                <div class="curr date"></div>
-                <div class="curr time"></div>
-            </div>
-            <div class="currMore">
-                <div class="wrapper">
-                    <img src="resources/thermometer.png" alt="thermometer" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Feels Like:</div>
-                        <div class="curr feelsLike"></div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <img src="resources/humidity.png" alt="humidity" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Humidity:</div>
-                        <div class="curr humidity"></div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <img src="resources/wind.png" alt="wind" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Wind Speed:</div>
-                        <div class="curr windSpeed"></div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <img src="resources/rain.png" alt="rain" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Chance of rain:</div>
-                        <div class="curr pop"></div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <img src="resources/sunrise.png" alt="rain" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Sunrise:</div>
-                        <div class="curr sunrise"></div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <img src="resources/sunset.png" alt="rain" class="currIcon">
-                    <div class="subWrap">
-                        <div class="currTxt">Sunset:</div>
-                        <div class="curr sunset"></div>
-                    </div>
-                </div>
-            </div>
+      <div class="currCont">
+        <div class="currMain">
+          <div class="curr city"></div>
+          <div class="curr temp"></div>
+          <div class="hiLo">
+            <div class="low"></div>
+            <div class="high"></div>
+          </div>
+          <div class="curr date"></div>
+          <div class="curr time"></div>
         </div>
-        <div class="descWrap">
-            <div class="curr weather"></div>
-            <div class="curr weatherDesc"></div>
-            <div class="curr comp"></div>
+        <div class="currMore">
+          <div class="wrapper">
+            <img
+              src="resources/thermometer.png"
+              alt="thermometer"
+              class="currIcon"
+            />
+            <div class="subWrap">
+              <div class="currTxt">Feels Like:</div>
+              <div class="curr feelsLike"></div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <img src="resources/humidity.png" alt="humidity" class="currIcon" />
+            <div class="subWrap">
+              <div class="currTxt">Humidity:</div>
+              <div class="curr humidity"></div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <img src="resources/wind.png" alt="wind" class="currIcon" />
+            <div class="subWrap">
+              <div class="currTxt">Wind Speed:</div>
+              <div class="curr windSpeed"></div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <img src="resources/rain.png" alt="rain" class="currIcon" />
+            <div class="subWrap">
+              <div class="currTxt">Chance of rain:</div>
+              <div class="curr pop"></div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <img src="resources/sunrise.png" alt="rain" class="currIcon" />
+            <div class="subWrap">
+              <div class="currTxt">Sunrise:</div>
+              <div class="curr sunrise"></div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <img src="resources/sunset.png" alt="rain" class="currIcon" />
+            <div class="subWrap">
+              <div class="currTxt">Sunset:</div>
+              <div class="curr sunset"></div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="descWrap">
+        <div class="curr weather"></div>
+        <div class="curr weatherDesc"></div>
+        <div class="curr comp"></div>
+      </div>
     </div>
     <div class="future">
-        <div class="tabs">
-            <div class="tab active">Hourly</div>
-            <div class="tab">Daily</div>
-        </div>
-        <div class="futureContainer">
-
-        </div>
+      <div class="tabs">
+        <div class="tab active">Hourly</div>
+        <div class="tab">Daily</div>
+      </div>
+      <div class="futureContainer"></div>
     </div>
-</body>
+  </body>
 </html>
